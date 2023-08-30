@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Game</title>
+</head>
+<body>
+
+<h1>Number Guessing Game</h1>
+
+<input type="number" id="userInput" placeholder="Enter your guess">
+<button onclick="handleGuess()">Guess</button>
+<button onclick="resetGame()">Restart</button>
+
+<script>
+let low = 1;
+let high = 10;
+let correctAns = Math.floor(Math.random() * (high - low + 1)) + low;
+let chances = 3;
+let chancesUsed = 0;
+let inputField = document.getElementById('userInput');
+
+function updateChancesLeft() {
+  let chancesLeft = chances - chancesUsed;
+  if (chancesLeft > 0) {
+    alert(`Chances left: ${chancesLeft}`);
+  } else {
+    alert(`Sorry, you lost. The correct number was ${correctAns}.`);
+    inputField.disabled = true;
+  }
+}
+
+function handleGuess() {
+  chancesUsed++;
+  let userGuess = parseInt(inputField.value);
+  
+  if (userGuess === correctAns) {
+    alert('Congratulations! You guessed the correct number.');
+    inputField.disabled = true;
+  } else if (userGuess < correctAns) {
+    alert('Try a higher number.');
+    updateChancesLeft();
+  } else {
+    alert('Try a lower number.');
+    updateChancesLeft();
+  }
+}
+
+function resetGame() {
+  chancesUsed = 0;
+  correctAns = Math.floor(Math.random() * (high - low + 1)) + low;
+  inputField.value = '';
+  inputField.disabled = false;
+}
+</script>
+
+</body>
+</html>
+
