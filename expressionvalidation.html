@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validated Expression Display</title>
+</head>
+<body>
+
+<script>
+function validateEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
+function validatePhoneNumber(phoneNumber) {
+  const phoneRegex = /^(?:\d{10}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4}|\(\d{3}\)[-\s]?\d{3}[-.\s]?\d{4})$/;
+  return phoneRegex.test(phoneNumber);
+}
+
+function validatePostCode(postCode) {
+  const postCodeRegex = /^\d{5}$/;
+  return postCodeRegex.test(postCode);
+}
+
+function displayValidatedExpression() {
+  const expressionType = prompt("Choose the type of expression to validate:\n1. Email\n2. Phone Number\n3. Post Code");
+  
+  if (!["1", "2", "3"].includes(expressionType)) {
+    alert("Invalid choice.");
+    return;
+  }
+
+  const userInput = prompt(`Enter expression to validate:`);
+  
+  let isValid = false;
+
+  if (expressionType === "1") { // Email validation
+    isValid = validateEmail(userInput);
+  } else if (expressionType === "2") { // Phone Number validation
+    isValid = validatePhoneNumber(userInput);
+  } else if (expressionType === "3") { // Post Code validation
+    isValid = validatePostCode(userInput);
+  } else {
+    alert("Invalid expression type.");
+    return;
+  }
+
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  if (isValid) {
+    resultsDiv.innerHTML = `<p>Valid Expression: ${userInput}</p>`;
+  } else {
+    resultsDiv.innerHTML = `<p>Invalid Expression: ${userInput}</p>`;
+  }
+}
+</script>
+
+<h1>Validated Expression Display</h1>
+<button onclick="displayValidatedExpression()">Display Validated Expression</button>
+<div id="results"></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
