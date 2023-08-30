@@ -35,11 +35,11 @@ function displayValidatedExpression() {
   
   let isValid = false;
 
-  if (expressionType === "1") { // Email validation
+  if (expressionType === "1") { 
     isValid = validateEmail(userInput);
-  } else if (expressionType === "2") { // Phone Number validation
+  } else if (expressionType === "2") { 
     isValid = validatePhoneNumber(userInput);
-  } else if (expressionType === "3") { // Post Code validation
+  } else if (expressionType === "3") { n
     isValid = validatePostCode(userInput);
   } else {
     alert("Invalid expression type.");
